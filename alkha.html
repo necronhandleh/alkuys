@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alkha</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.1);
+      --text: #f0ede8;
+      --muted: #6b6b6b;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo { font-size: 16px; font-weight: 500; letter-spacing: 0.04em; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      cursor: pointer; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    section { padding: 5rem 2rem; max-width: 760px; margin: 0 auto; }
+
+    .hero { padding-top: 7rem; padding-bottom: 6rem; }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.12em; color: var(--muted);
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 52px; font-weight: 400; line-height: 1.1; margin-bottom: 1.25rem;
+    }
+    .hero-name span { color: var(--muted); }
+    .hero-tagline {
+      font-size: 16px; color: var(--muted); line-height: 1.8;
+      max-width: 480px; margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--text); color: var(--bg);
+      border: none; padding: 11px 24px; border-radius: var(--radius);
+      font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 0.5px solid var(--border); padding: 11px 24px;
+      border-radius: var(--radius); font-size: 13px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; transition: background 0.15s;
+    }
+    .btn-outline:hover { background: var(--surface); }
+
+    .section-label {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 2rem; padding-bottom: 0.75rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .about-text {
+      font-size: 15px; line-height: 1.9; color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .interest-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .interest-icon { font-size: 22px; margin-bottom: 4px; color: var(--text); }
+    .interest-title { font-size: 14px; font-weight: 500; }
+    .interest-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .skill-item {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      background: var(--surface);
+    }
+    .skill-cat {
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .skill-tag {
+      display: inline-block; font-size: 12px;
+      background: rgba(255,255,255,0.06); padding: 3px 10px;
+      border-radius: 20px; margin: 3px 3px 0 0; color: var(--text);
+    }
+
+    .projects-list { display: flex; flex-direction: column; gap: 14px; }
+    .project-card {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      background: var(--surface);
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .project-icon { font-size: 22px; color: var(--muted); flex-shrink: 0; margin-top: 2px; }
+    .project-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .project-tag {
+      display: inline-block; font-size: 11px; color: var(--muted);
+      background: rgba(255,255,255,0.06); padding: 2px 8px;
+      border-radius: 10px; margin-top: 8px; margin-right: 4px;
+    }
+
+    .contact-inner {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      background: var(--surface);
+      text-align: center;
+    }
+    .contact-title { font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; margin-bottom: 0.75rem; }
+    .contact-sub { font-size: 14px; color: var(--muted); margin-bottom: 2rem; line-height: 1.8; }
+    .contact-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .contact-link {
+      display: flex; align-items: center; gap: 6px;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 9px 18px; font-size: 13px;
+      color: var(--text); text-decoration: none;
+      background: var(--bg); cursor: pointer;
+      transition: background 0.15s;
+    }
+    .contact-link:hover { background: rgba(255,255,255,0.06); }
+    .contact-link i { font-size: 16px; }
+
+    hr.divider { border: none; border-top: 0.5px solid var(--border); }
+
+    footer {
+      padding: 2rem; text-align: center;
+      font-size: 12px; color: var(--muted);
+      border-top: 0.5px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .hero-name { font-size: 36px; }
+      .about-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 1rem; }
+      section { padding: 3.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">Alkha.</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Selamat datang di ruang saya</p>
+    <h1 class="hero-name">Halo, saya Alkha.<br><span>Pelajar yang selalu penasaran.</span></h1>
+    <p class="hero-tagline">17 tahun, dari Yogyakarta. Masih banyak hal yang ingin saya pelajari dan eksplorasi, dan saya rasa itu yang bikin hidup jadi seru.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Lihat Projects</button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hubungi Saya</button>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="about">
+    <p class="section-label">About me</p>
+    <p class="about-text">Nama saya Alkha, 17 tahun, tinggal di Yogyakarta. Saya tipe orang yang suka banget belajar hal baru dan explore berbagai hal, entah itu soal saham, fashion, olahraga, sampai hal random yang tiba-tiba bikin penasaran. Yang paling saya suka di dunia ini? Alam. Serius, pemandangan alam itu bagi saya hal paling indah yang ada. Selain itu saya juga dengerin Drake hampir tiap hari, lagu favoritnya B's on the Table, nonton film, main Roblox sama 2K26 kalau lagi santai, dan belakangan ini lagi serius belajar dunia saham dan trading.</p>
+    <div class="about-grid">
+      <div class="interest-card">
+        <i class="ti ti-mountain interest-icon" aria-hidden="true"></i>
+        <span class="interest-title">Alam</span>
+        <span class="interest-desc">Hal paling indah di dunia ini menurut saya. Nggak ada yang ngalahin pemandangan alam yang bagus.</span>
+      </div>
+      <div class="interest-card">
+        <i class="ti ti-chart-candle interest-icon" aria-hidden="true"></i>
+        <span class="interest-title">Saham &amp; Trading</span>
+        <span class="interest-desc">Lagi serius belajar analisis teknikal dan pasar IDX. Masih proses tapi makin hari makin seru.</span>
+      </div>
+      <div class="interest-card">
+        <i class="ti ti-device-gamepad-2 interest-icon" aria-hidden="true"></i>
+        <span class="interest-title">Gaming</span>
+        <span class="interest-desc">Roblox sama NBA 2K26 jadi andalan kalau lagi pengen santai dan nggak mikir berat.</span>
+      </div>
+      <div class="interest-card">
+        <i class="ti ti-ball-basketball interest-icon" aria-hidden="true"></i>
+        <span class="interest-title">Basketball &amp; Gym</span>
+        <span class="interest-desc">Olahraga itu bukan cuma soal fisik, buat saya ini cara paling enak buat ngejerniin pikiran.</span>
+      </div>
+      <div class="interest-card">
+        <i class="ti ti-hanger interest-icon" aria-hidden="true"></i>
+        <span class="interest-title">Fashion</span>
+        <span class="interest-desc">Suka eksplorasi gaya dan nemuin style yang beneran ngerepresentasiin diri sendiri.</span>
+      </div>
+      <div class="interest-card">
+        <i class="ti ti-movie interest-icon" aria-hidden="true"></i>
+        <span class="interest-title">Film &amp; Musik</span>
+        <span class="interest-desc">Drake almost everyday, film kalau lagi mood. B's on the Table lagi jadi lagu favorit.</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="skills">
+    <p class="section-label">Skills &amp; Keahlian</p>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <p class="skill-cat">Saham &amp; Trading</p>
+        <span class="skill-tag">Analisis Teknikal</span>
+        <span class="skill-tag">Swing Trading</span>
+        <span class="skill-tag">Stockbit</span>
+        <span class="skill-tag">TradingView</span>
+        <span class="skill-tag">Pasar IDX</span>
+      </div>
+      <div class="skill-item">
+        <p class="skill-cat">Gaming &amp; Tech</p>
+        <span class="skill-tag">Roblox</span>
+        <span class="skill-tag">Lua Scripting</span>
+        <span class="skill-tag">NBA 2K26</span>
+      </div>
+      <div class="skill-item">
+        <p class="skill-cat">Minat Lainnya</p>
+        <span class="skill-tag">Fashion</span>
+        <span class="skill-tag">Basketball</span>
+        <span class="skill-tag">Gym</span>
+        <span class="skill-tag">Fotografi Alam</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <div class="projects-list">
+      <div class="project-card">
+        <i class="ti ti-chart-line project-icon" aria-hidden="true"></i>
+        <div>
+          <p class="project-title">IDX Trading Journal</p>
+          <p class="project-desc">Rutin mempelajari dan mencatat analisis teknikal saham IDX. Pakai Stockbit sama TradingView buat riset dan screening sehari-hari.</p>
+          <span class="project-tag">Trading</span><span class="project-tag">IDX</span><span class="project-tag">Ongoing</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <i class="ti ti-school project-icon" aria-hidden="true"></i>
+        <div>
+          <p class="project-title">Menuju PTN Impian</p>
+          <p class="project-desc">Lagi fokus banget buat masuk ke PTN dan jurusan yang udah jadi impian dari lama. Ini bukan cuma soal ujian, tapi bagian dari visi yang lebih besar ke depannya.</p>
+          <span class="project-tag">Pendidikan</span><span class="project-tag">Ongoing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <div class="contact-inner">
+      <p class="contact-title">Mari terhubung!</p>
+      <p class="contact-sub">Mau ngobrol soal saham, ngobrolin film, atau cuma sekedar say hi, feel free aja.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://www.instagram.com/alkhalit_?igsh=a3pnb2M5YzB5dm8z" target="_blank"><i class="ti ti-brand-instagram"></i> Instagram</a>
+        <a class="contact-link" href="https://open.spotify.com/user/31ms2fmp4jq5iflalpfiabwwtwta?si=ncfqa0knS-qCIx_K_j5L2w" target="_blank"><i class="ti ti-brand-spotify"></i> Spotify</a>
+        <a class="contact-link" href="#"><i class="ti ti-brand-twitter"></i> Twitter / X</a>
+        <a class="contact-link" href="#"><i class="ti ti-mail"></i> Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>&#169; 2026 Alkha. Made with intention.</footer>
+
+</body>
+</html>
